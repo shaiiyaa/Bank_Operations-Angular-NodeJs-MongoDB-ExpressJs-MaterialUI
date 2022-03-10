@@ -1,0 +1,48 @@
+<!-- <app-please-wait *ngIf="!product"></app-please-wait> -->
+<div class="box">
+    <h1> Bank Operations Search:</h1>
+    
+    <form #myForm="ngForm" (submit)="submit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Select A Account</mat-label>
+            <mat-select #account="ngModel" [(ngModel)]="picked_account" name="account">
+                <mat-option *ngFor="let a of bank_accounts" 
+                    [value]="a"> {{ a }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <br/>
+        <button mat-raised-button [disabled]="myForm.form.invalid">
+            <mat-icon>send</mat-icon>
+            Search
+        </button>
+
+        <button mat-stroked-button type="reset">
+            <mat-icon>delete</mat-icon>
+            Clear
+        </button>
+
+    </form>
+
+    <div class="box" *ngFor="let o of account_operation">
+        <div>
+            <ul class='no-bullets'>
+                <li> Account Number: {{ o.accountNumber }}</li>
+                <li> Details: 
+                    <ul>
+                        <li>Amount:  {{ o.amount }}</li>
+                        <li>Date:  {{ o.date }}</li>
+                    </ul>
+                </li>
+                <li> Operation: 
+                    <ul>
+                        <li>Name:  {{ o.operation.name }}</li>
+                    </ul>
+                </li>
+                <br/> 
+        </ul>
+        </div>
+    </div>
+
+</div>

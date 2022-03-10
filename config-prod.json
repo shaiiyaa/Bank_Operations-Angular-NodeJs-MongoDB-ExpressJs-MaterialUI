@@ -1,0 +1,6 @@
+{
+
+    "database": {
+        "connectionString": "mongodb+srv://shaiiyaa:shaiiyaa2101@bankaccounts.5z1eg.mongodb.net/BankAccounts?retryWrites=true&w=majority"
+    }
+}

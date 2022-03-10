@@ -1,0 +1,60 @@
+<div class="box">
+    <h1> New Product </h1>
+    
+    <form #myForm="ngForm" (submit)="submit()">
+        <mat-form-field appearance="fill">
+            <mat-label>Account Number: </mat-label>
+            <input matInput #AccountNumber_field="ngModel" type="number" [(ngModel)]="operation.accountNumber" name="name" minlength="6" maxlength="6" required />
+            <mat-error *ngIf="AccountNumber_field.errors?.required && AccountNumber_field.touched">Account Number is required!</mat-error>
+            <mat-error *ngIf="AccountNumber_field.errors?.minlength && AccountNumber_field.errors?.maxlength">Account Number most be 6 numbers!</mat-error>
+        </mat-form-field>  
+
+        <mat-form-field appearance="outline">
+            <mat-label>Select Operation</mat-label>
+            <mat-select #types_field="ngModel" [(ngModel)]="operation.typeID" name="types">
+                <mat-option *ngFor="let t of types" 
+                [value]="t._id"> {{ t.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+        <mat-label>Amount: </mat-label>
+        <input matInput #amount_field="ngModel" type="number" [(ngModel)]="operation.amount" name="amount" required />
+        <mat-error *ngIf="amount_field.errors?.required && amount_field.touched">Amount is required!</mat-error>
+    </mat-form-field> 
+    
+    <mat-form-field appearance="outline">
+        <mat-label>Date: </mat-label>
+        <input matInput #date_field="ngModel" type="date" [(ngModel)]="operation.date" name="date" required />
+        <mat-error *ngIf="date_field.errors?.required && date_field.touched">Date is required!</mat-error>
+    </mat-form-field> 
+   
+    <ng-container *ngIf="operation.typeID === '61555f2835f81a5b72625f57'">
+        <mat-form-field appearance="outline">
+            <mat-label>Interest: </mat-label>
+            <input matInput #interest_field="ngModel" type="number" [(ngModel)]="operation.interest" name="interest" required />
+            <mat-error *ngIf="interest_field.errors?.required && interest_field.touched">Interest is required!</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Payments: </mat-label>
+            <input matInput #payments_field="ngModel" type="number" [(ngModel)]="operation.payments" name="payments" required />
+            <mat-error *ngIf="payments_field.errors?.required && payments_field.touched">Payments is required!</mat-error>
+        </mat-form-field>
+    </ng-container> 
+
+        
+        <button mat-raised-button [disabled]="myForm.form.invalid">
+            <mat-icon>send</mat-icon>
+            Submit
+        </button>
+
+        <button mat-stroked-button type="reset">
+            <mat-icon>delete</mat-icon>
+            Clear
+        </button>
+
+    </form>
+
+</div>
